@@ -1,6 +1,6 @@
+using BikeSharing.Domain.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
-using BikeSharingAPI.Enums;
 
 namespace BikeSharing.Application.DTOs.Users
 {

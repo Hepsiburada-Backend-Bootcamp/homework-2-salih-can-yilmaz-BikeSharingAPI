@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BikeSharing.Application;
 
 namespace BikeSharingAPI
 {
@@ -29,8 +30,6 @@ namespace BikeSharingAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BikeSharingDBContext>(options => options.UseSqlite($"Data Source={Configuration.GetConnectionString("SQLite")}"));
-
             services.AddControllers().AddJsonOptions(options => {
                 options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
@@ -40,10 +39,10 @@ namespace BikeSharingAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BikeSharingAPI", Version = "v1" });
             });
 
-            services.AddScoped<ILogService, LogService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ISessionService, SessionService>();
-            services.AddScoped<BikeSharingDBContext>();
+            services.AddApplicationModule(Configuration);
+
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

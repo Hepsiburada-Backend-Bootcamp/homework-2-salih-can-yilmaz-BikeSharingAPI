@@ -1,5 +1,5 @@
+using BikeSharing.Domain.Enums;
 using System;
-using BikeSharingAPI.Enums;
 
 namespace BikeSharing.Application.DTOs.Sessions
 {
