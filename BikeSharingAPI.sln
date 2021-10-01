@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeSharingAPI", "BikeSharingAPI\BikeSharingAPI.csproj", "{AF6F750F-ABEF-43AB-96B9-C67F46643587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSharingAPI", "BikeSharingAPI\BikeSharingAPI.csproj", "{AF6F750F-ABEF-43AB-96B9-C67F46643587}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSharing.Domain", "BikeSharing.Domain\BikeSharing.Domain.csproj", "{2765AA4B-3A0D-4C06-8F4B-AC0A48B84391}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSharing.Infrastructure", "BikeSharing.Infrastructure\BikeSharing.Infrastructure.csproj", "{04F967CE-DA4D-4469-B364-67E70D70AFF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeSharing.Application", "BikeSharing.Application\BikeSharing.Application.csproj", "{9540B751-4294-41EF-A79B-3D9781932265}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{AF6F750F-ABEF-43AB-96B9-C67F46643587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF6F750F-ABEF-43AB-96B9-C67F46643587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF6F750F-ABEF-43AB-96B9-C67F46643587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2765AA4B-3A0D-4C06-8F4B-AC0A48B84391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2765AA4B-3A0D-4C06-8F4B-AC0A48B84391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2765AA4B-3A0D-4C06-8F4B-AC0A48B84391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2765AA4B-3A0D-4C06-8F4B-AC0A48B84391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04F967CE-DA4D-4469-B364-67E70D70AFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F967CE-DA4D-4469-B364-67E70D70AFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F967CE-DA4D-4469-B364-67E70D70AFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F967CE-DA4D-4469-B364-67E70D70AFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9540B751-4294-41EF-A79B-3D9781932265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9540B751-4294-41EF-A79B-3D9781932265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9540B751-4294-41EF-A79B-3D9781932265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9540B751-4294-41EF-A79B-3D9781932265}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

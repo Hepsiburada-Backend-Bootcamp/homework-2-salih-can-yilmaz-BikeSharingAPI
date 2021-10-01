@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
-using BikeSharingAPI.Enums;
-using BikeSharingAPI.Models;
-using BikeSharingAPI.Models.DTOs.Users;
-using BikeSharingAPI.Services;
-using BikeSharingAPI.Services.IServices;
-using BikeSharingAPI.Tools;
+using BikeSharing.Application.DTOs.Users;
+using BikeSharing.Application.Services.IServices;
+using BikeSharing.Application.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BikeSharing.Domain.Enums;
+using BikeSharing.Application;
 
 namespace BikeSharingAPI.Controllers
 {
