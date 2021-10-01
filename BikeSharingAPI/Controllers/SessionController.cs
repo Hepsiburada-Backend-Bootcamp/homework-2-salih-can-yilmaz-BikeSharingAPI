@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BikeSharing.Domain.Enums;
 using BikeSharing.Application;
+using Serilog;
 
 namespace BikeSharingAPI.Controllers
 {
@@ -17,12 +18,10 @@ namespace BikeSharingAPI.Controllers
     [ApiController]
     public class SessionController : ControllerBase
     {
-        private readonly ILogService _LogService;
         private readonly ISessionService _SessionService;
 
-        public SessionController(ILogService logService, ISessionService sessionService)
+        public SessionController(ISessionService sessionService)
         {
-            this._LogService = logService;
             this._SessionService = sessionService;
         }
 
@@ -37,7 +36,7 @@ namespace BikeSharingAPI.Controllers
             string fields = ""
             )
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             try
             {
@@ -67,7 +66,7 @@ namespace BikeSharingAPI.Controllers
         [HttpGet]
         public IActionResult GetSession([FromRoute] Guid id)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             try
             {
@@ -98,7 +97,7 @@ namespace BikeSharingAPI.Controllers
             [FromBody] SessionCreateDTO sessionCreateDTO
             )
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             if (_SessionService.CreateSession(sessionCreateDTO))
             {
@@ -119,7 +118,7 @@ namespace BikeSharingAPI.Controllers
         [HttpPut]
         public IActionResult PutSession([FromBody]SessionUpdateDTO sessionUpdateDTO)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             if (_SessionService.UpdateSession(sessionUpdateDTO, true))
             {
@@ -139,7 +138,7 @@ namespace BikeSharingAPI.Controllers
         [HttpPatch]
         public IActionResult PatchSession([FromBody] SessionUpdateDTO sessionUpdateDTO)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             if (_SessionService.UpdateSession(sessionUpdateDTO))
             {
@@ -160,7 +159,7 @@ namespace BikeSharingAPI.Controllers
         [Route("{id}")]
         public IActionResult DeleteSession([FromRoute] Guid id)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             _SessionService.DeleteSession(id);
 

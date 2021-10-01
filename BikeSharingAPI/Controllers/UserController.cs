@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BikeSharing.Domain.Enums;
 using BikeSharing.Application;
+using Serilog;
 
 namespace BikeSharingAPI.Controllers
 {
@@ -17,12 +18,10 @@ namespace BikeSharingAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ILogService _LogService;
         private readonly IUserService _UserService;
 
-        public UserController(ILogService logService, IUserService userService)
+        public UserController(IUserService userService)
         {
-            this._LogService = logService;
             this._UserService = userService;
             
         }
@@ -38,8 +37,7 @@ namespace BikeSharingAPI.Controllers
             string fields = ""
             )
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
-
+            Log.Information(SharedData.LogMessageRequestReceived);
             try
             {
                 List<UserReadDTO> userReadDTOs = _UserService.GetUsers(filter, orderByParams, fields);
@@ -71,7 +69,7 @@ namespace BikeSharingAPI.Controllers
         [HttpGet]
         public IActionResult GetUser([FromRoute]int id)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
             try
             {
                 if (HttpContext.Request.Path.Value.Contains("/Sessions"))
@@ -92,7 +90,7 @@ namespace BikeSharingAPI.Controllers
             }
             catch (Exception ex)
             {
-                _LogService.Log(ex.Message, EnumLogLevel.ERROR);
+                Log.Error(ex.Message);
                 
                 return StatusCode(500);
             }
@@ -108,7 +106,7 @@ namespace BikeSharingAPI.Controllers
             [FromBody] UserCreateDTO userCreateDTO
             )
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             if (_UserService.CreateUser(userCreateDTO))
             {
@@ -129,9 +127,9 @@ namespace BikeSharingAPI.Controllers
         [HttpPut]
         public IActionResult PutUser([FromBody] UserUpdateDTO userUpdateDTO)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
-            if(_UserService.UpdateUser(userUpdateDTO, true))
+            if (_UserService.UpdateUser(userUpdateDTO, true))
             {
                 return NoContent();
             }
@@ -149,7 +147,7 @@ namespace BikeSharingAPI.Controllers
         [HttpPatch]
         public IActionResult PatchUser([FromBody] UserUpdateDTO userUpdateDTO)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             if (_UserService.UpdateUser(userUpdateDTO))
             {
@@ -170,7 +168,7 @@ namespace BikeSharingAPI.Controllers
         [Route("{id}")]
         public IActionResult DeleteUser([FromRoute] int id)
         {
-            _LogService.Log(SharedData.LogMessageRequestReceived, EnumLogLevel.INFORMATION);
+            Log.Information(SharedData.LogMessageRequestReceived);
 
             _UserService.DeleteUser(id);
 

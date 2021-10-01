@@ -5,7 +5,9 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BikeSharingAPI
@@ -15,11 +17,12 @@ namespace BikeSharingAPI
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
+                .WriteTo.Console(formatProvider: new CultureInfo("tr-TR"))
                 .CreateLogger();
 
             try
             {
+                Log.Information("The application is starting...");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
@@ -28,6 +31,7 @@ namespace BikeSharingAPI
             }
             finally 
             {
+                Log.Information("The application is terminating...");
                 Log.CloseAndFlush();
             }
         }

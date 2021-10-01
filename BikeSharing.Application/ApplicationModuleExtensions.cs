@@ -19,7 +19,6 @@ namespace BikeSharing.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<ILogService, LogService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISessionService, SessionService>();
 
