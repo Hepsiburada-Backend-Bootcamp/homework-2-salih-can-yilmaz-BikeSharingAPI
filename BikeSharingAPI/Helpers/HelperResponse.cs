@@ -63,12 +63,6 @@ namespace BikeSharingAPI.Helpers
                     default:
                         break;
                 }
-                return new ContentResult
-                {
-                    StatusCode = Convert.ToInt32(statusCode),
-                    ContentType = "application/json",
-                    Content = data.ToString()
-                };
             }
 
             return new NoContentResult();
