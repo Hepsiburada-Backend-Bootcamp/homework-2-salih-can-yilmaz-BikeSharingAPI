@@ -44,10 +44,14 @@ namespace BikeSharingAPI.Controllers
 
             try
             {
-                List<SessionReadDTO> sessionModel = _SessionService.GetSessions(filter, orderByParams, fields);
-                if (sessionModel != null && sessionModel.Count > 0)
+                List<SessionReadDTO> sessionReadDTOs = _SessionService.GetSessions(filter, orderByParams, fields);
+                if (sessionReadDTOs != null && sessionReadDTOs.Count > 0)
                 {
-                    return Ok(sessionModel);
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.OK,
+                        sessionReadDTOs
+                        );
                 }
                 else
                 {
@@ -77,11 +81,15 @@ namespace BikeSharingAPI.Controllers
 
             try
             {
-                SessionReadDTO sessionModel = _SessionService.GetSession(id);
+                SessionReadDTO sessionReadDTO = _SessionService.GetSession(id);
 
-                if (sessionModel != null)
+                if (sessionReadDTO != null)
                 {
-                    return Ok(sessionModel);
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.OK,
+                        sessionReadDTO
+                        );
                 }
                 else
                 {
@@ -112,7 +120,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_SessionService.CreateSession(sessionCreateDTO))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -139,7 +147,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_SessionService.UpdateSession(sessionUpdateDTO, true))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -165,7 +173,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_SessionService.UpdateSession(sessionUpdateDTO))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -192,7 +200,7 @@ namespace BikeSharingAPI.Controllers
 
             _SessionService.DeleteSession(id);
 
-            return Ok();
+            return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
         }
     }
 }

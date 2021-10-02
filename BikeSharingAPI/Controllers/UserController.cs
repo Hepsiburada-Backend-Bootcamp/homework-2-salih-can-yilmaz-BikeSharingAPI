@@ -48,7 +48,11 @@ namespace BikeSharingAPI.Controllers
 
                 if(userReadDTOs != null && userReadDTOs.Count > 0)
                 {
-                    return Ok(userReadDTOs);
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.OK,
+                        userReadDTOs
+                        );
                 }
                 else
                 {
@@ -90,7 +94,11 @@ namespace BikeSharingAPI.Controllers
 
                 if(userReadDTO != null)
                 {
-                    return Ok(userReadDTO);
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.OK,
+                        userReadDTO
+                        );
                 }
                 else
                 {
@@ -123,7 +131,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_UserService.CreateUser(userCreateDTO))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -150,7 +158,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_UserService.UpdateUser(userUpdateDTO, true))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -176,7 +184,7 @@ namespace BikeSharingAPI.Controllers
 
             if (_UserService.UpdateUser(userUpdateDTO))
             {
-                return NoContent();
+                return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
             }
             else
             {
@@ -203,7 +211,7 @@ namespace BikeSharingAPI.Controllers
 
             _UserService.DeleteUser(id);
 
-            return Ok();
+            return HelperResponse.GenerateResponse(HttpStatusCode.NoContent);
         }
     }
 }
