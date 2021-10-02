@@ -66,6 +66,8 @@ namespace BikeSharingAPI.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
+
                 return HelperResponse.GenerateResponse(
                     EnumResponseFormat.JSON,
                     HttpStatusCode.InternalServerError,
@@ -110,6 +112,8 @@ namespace BikeSharingAPI.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
+
                 return HelperResponse.GenerateResponse(
                     EnumResponseFormat.JSON,
                     HttpStatusCode.InternalServerError,

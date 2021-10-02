@@ -65,7 +65,6 @@ namespace BikeSharingAPI.Controllers
                         );
                 }
             }
-
             catch (Exception ex)
             {
                 Log.Error(ex.Message);
@@ -154,7 +153,7 @@ namespace BikeSharingAPI.Controllers
                     HttpStatusCode.InternalServerError,
                     new ErrorModel { ErrorMessage = SharedData.MessageCantCreateUser }
                     );
-            }            
+            }
         }
 
         /// <summary>
