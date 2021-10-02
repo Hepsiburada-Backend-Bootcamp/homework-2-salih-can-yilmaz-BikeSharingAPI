@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using BikeSharing.Domain.Enums;
 using BikeSharing.Application;
 using Serilog;
+using BikeSharingAPI.Helpers;
+using System.Net;
+using BikeSharingAPI.Models;
+using BikeSharingAPI.Enums;
 
 namespace BikeSharingAPI.Controllers
 {
@@ -52,7 +56,11 @@ namespace BikeSharingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return HelperResponse.GenerateResponse(
+                    EnumResponseFormat.JSON,
+                    HttpStatusCode.InternalServerError,
+                    new ErrorModel { ErrorMessage = ex.Message}
+                    );
             }
         }
 
@@ -82,7 +90,11 @@ namespace BikeSharingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return HelperResponse.GenerateResponse(
+                    EnumResponseFormat.JSON,
+                    HttpStatusCode.InternalServerError,
+                    new ErrorModel { ErrorMessage = ex.Message }
+                    );
             }
         }
 
@@ -104,7 +116,13 @@ namespace BikeSharingAPI.Controllers
             }
             else
             {
-                return StatusCode(500);
+                Log.Error(SharedData.MessageCantCreateSession);
+
+                return HelperResponse.GenerateResponse(
+                    EnumResponseFormat.JSON,
+                    HttpStatusCode.InternalServerError,
+                    new ErrorModel { ErrorMessage = SharedData.MessageCantCreateSession }
+                    );
             }
         }
 
@@ -125,7 +143,13 @@ namespace BikeSharingAPI.Controllers
             }
             else
             {
-                return StatusCode(500);
+                Log.Error(SharedData.MessageCantUpdateSession);
+
+                return HelperResponse.GenerateResponse(
+                    EnumResponseFormat.JSON,
+                    HttpStatusCode.InternalServerError,
+                    new ErrorModel { ErrorMessage = SharedData.MessageCantUpdateSession }
+                    );
             }
         }
 
@@ -145,7 +169,13 @@ namespace BikeSharingAPI.Controllers
             }
             else
             {
-                return StatusCode(500);
+                Log.Error(SharedData.MessageCantUpdateSession);
+
+                return HelperResponse.GenerateResponse(
+                    EnumResponseFormat.JSON,
+                    HttpStatusCode.InternalServerError,
+                    new ErrorModel { ErrorMessage = SharedData.MessageCantUpdateSession }
+                    );
             }
         }
 
