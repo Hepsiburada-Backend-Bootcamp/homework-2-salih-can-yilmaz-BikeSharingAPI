@@ -1,4 +1,6 @@
+using System;
 using System.Net;
+using BikeSharingAPI.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeSharingAPI.Helpers
@@ -6,6 +8,7 @@ namespace BikeSharingAPI.Helpers
     public static class HelperResponse
     {
         public static IActionResult GenerateResponse<T>(
+            EnumResponseFormat format,
             HttpStatusCode statusCode,
             T data
         )
@@ -14,7 +17,8 @@ namespace BikeSharingAPI.Helpers
             {
                 return new ContentResult
                 {
-                    StatusCode = 200,
+                    StatusCode = Convert.ToInt32(statusCode),
+                    ContentType = "application/json",
                     Content = data.ToString()
                 };
             }
