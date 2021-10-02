@@ -1,6 +1,7 @@
 ﻿using BikeSharing.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,5 +21,7 @@ namespace BikeSharing.Domain.Entities
         public double? TotalDistance { get; set; }
         public int? UserRating { get; set; }
         public int? UserId { get; set; }
+        [ForeignKey("UserId")]
+        public User SessionUser { get; set; }
     }
 }

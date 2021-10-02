@@ -41,7 +41,6 @@ namespace BikeSharingAPI.Controllers
             try
             {
                 List<SessionReadDTO> sessionModel = _SessionService.GetSessions(filter, orderByParams, fields);
-
                 if (sessionModel != null && sessionModel.Count > 0)
                 {
                     return Ok(sessionModel);
