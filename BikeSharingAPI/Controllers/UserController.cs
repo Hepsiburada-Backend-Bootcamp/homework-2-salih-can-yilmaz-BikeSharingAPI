@@ -56,7 +56,13 @@ namespace BikeSharingAPI.Controllers
                 }
                 else
                 {
-                    return NotFound(SharedData.MessageUsersNotFound);
+                    Log.Error(SharedData.MessageUsersNotFound);
+
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.NotFound,
+                        new ErrorModel { ErrorMessage = SharedData.MessageUsersNotFound }
+                        );
                 }
             }
 
@@ -102,7 +108,13 @@ namespace BikeSharingAPI.Controllers
                 }
                 else
                 {
-                    return NotFound(SharedData.MessageUserNotFound);
+                    Log.Error(SharedData.MessageUserNotFound);
+
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.NotFound,
+                        new ErrorModel { ErrorMessage = SharedData.MessageUserNotFound }
+                        );
                 }
             }
             catch (Exception ex)

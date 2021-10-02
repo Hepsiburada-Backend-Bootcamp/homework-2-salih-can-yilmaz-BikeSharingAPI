@@ -55,7 +55,13 @@ namespace BikeSharingAPI.Controllers
                 }
                 else
                 {
-                    return NotFound(SharedData.MessageSessionsNotFound);
+                    Log.Error(SharedData.MessageSessionsNotFound);
+
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.NotFound,
+                        new ErrorModel { ErrorMessage = SharedData.MessageSessionsNotFound }
+                        );
                 }
             }
             catch (Exception ex)
@@ -93,7 +99,13 @@ namespace BikeSharingAPI.Controllers
                 }
                 else
                 {
-                    return NotFound(SharedData.MessageSessionNotFound);
+                    Log.Error(SharedData.MessageSessionNotFound);
+
+                    return HelperResponse.GenerateResponse(
+                        EnumResponseFormat.JSON,
+                        HttpStatusCode.NotFound,
+                        new ErrorModel { ErrorMessage = SharedData.MessageSessionNotFound }
+                        );
                 }
             }
             catch (Exception ex)
