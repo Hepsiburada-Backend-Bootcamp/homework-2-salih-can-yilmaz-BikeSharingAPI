@@ -15,7 +15,7 @@ namespace BikeSharing.Domain.Entities
         public EnumLocation? StartLocation { get; set; }
         public EnumLocation? EndLocation { get; set; }
         public double? Temperature { get; set; }
-        public bool IsHoliday { get; set; }
+        public bool? IsHoliday { get; set; }
         public double? Cost { get; set; }
         public string UserComment { get; set; }
         public double? TotalDistance { get; set; }
