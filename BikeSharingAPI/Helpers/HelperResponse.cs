@@ -53,6 +53,7 @@ namespace BikeSharingAPI.Helpers
                             ContentType = "text/html",
                             Content = data.ToString()
                         };
+
                     case EnumResponseFormat.TEXT:
                         return new ContentResult
                         {
@@ -65,7 +66,20 @@ namespace BikeSharingAPI.Helpers
                 }
             }
 
-            return new NoContentResult();
-        } 
+            return new ContentResult
+            {
+                StatusCode = Convert.ToInt32(statusCode)
+            };
+        }
+
+        public static IActionResult GenerateResponse(
+            HttpStatusCode statusCode
+        )
+        {
+            return new ContentResult
+            {
+                StatusCode = Convert.ToInt32(statusCode)
+            };
+        }
     }
 }
