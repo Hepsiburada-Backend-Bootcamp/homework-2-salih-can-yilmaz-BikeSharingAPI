@@ -1,4 +1,8 @@
+using System;
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using BikeSharingAPI.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeSharingAPI.Helpers
@@ -6,20 +10,77 @@ namespace BikeSharingAPI.Helpers
     public static class HelperResponse
     {
         public static IActionResult GenerateResponse<T>(
+            EnumResponseFormat format,
             HttpStatusCode statusCode,
-            T data
+            T data,
+            bool isRawData = false
         )
         {
             if (data != null)
             {
-                return new ContentResult
+                string content = String.Empty;
+                switch (format)
                 {
-                    StatusCode = 200,
-                    Content = data.ToString()
-                };
+                    case EnumResponseFormat.JSON:
+                        if (!isRawData)
+                            content = JsonSerializer.Serialize(data, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+                        else
+                            content = data.ToString();
+
+                        return new ContentResult
+                        {
+                            StatusCode = Convert.ToInt32(statusCode),
+                            ContentType = "application/json",
+                            Content = content
+                        };
+
+                    case EnumResponseFormat.XML:
+                        if (!isRawData)
+                            content = HelperXML.TOXML<T>(data);
+                        else
+                            content = data.ToString();
+
+                        return new ContentResult
+                        {
+                            StatusCode = Convert.ToInt32(statusCode),
+                            ContentType = "application/xml",
+                            Content = content,
+                        };
+
+                    case EnumResponseFormat.HTML:
+                        return new ContentResult
+                        {
+                            StatusCode = Convert.ToInt32(statusCode),
+                            ContentType = "text/html",
+                            Content = data.ToString()
+                        };
+
+                    case EnumResponseFormat.TEXT:
+                        return new ContentResult
+                        {
+                            StatusCode = Convert.ToInt32(statusCode),
+                            ContentType = "text/plain; charset=UTF-8",
+                            Content = data.ToString()
+                        };
+                    default:
+                        break;
+                }
             }
 
-            return new NoContentResult();
-        } 
+            return new ContentResult
+            {
+                StatusCode = Convert.ToInt32(statusCode)
+            };
+        }
+
+        public static IActionResult GenerateResponse(
+            HttpStatusCode statusCode
+        )
+        {
+            return new ContentResult
+            {
+                StatusCode = Convert.ToInt32(statusCode)
+            };
+        }
     }
 }
