@@ -23,5 +23,8 @@ namespace BikeSharing.Domain.Entities
         public int? UserId { get; set; }
         [ForeignKey("UserId")]
         public User SessionUser { get; set; }
+        public Guid BicycleId { get; set; }
+        [ForeignKey("BicycleId")]
+        public User SessionBicycle { get; set; }
     }
 }

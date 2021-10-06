@@ -16,6 +16,7 @@ namespace BikeSharing.Application.DTOs.Sessions
         public string UserComment { get; set; }
         public double? TotalDistance { get; set; }
         public int? UserRating { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
+        public Guid BicycleId { get; set; }
     }
 }
